@@ -95,7 +95,7 @@ fun RuniquePasswordTextField(
                 .background(
                     if (isFocused) {
                         MaterialTheme.colorScheme.primary.copy(
-                            alpha = 0.5f
+                            alpha = 0.05f
                         )
                     } else {
                         MaterialTheme.colorScheme.surface
