@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import com.example.auth.domain.PasswordValidationState
 import com.example.auth.domain.UserDataValidator
 import com.example.auth.presentation.R
+import com.example.auth.presentation.login.LoginAction
 import com.example.core.presentation.designsystem.CheckIcon
 import com.example.core.presentation.designsystem.CrossIcon
 import com.example.core.presentation.designsystem.EmailIcon
@@ -76,7 +77,12 @@ fun RegisterScreenRoot(
 
     RegisterScreen(
         state = viewModel.state,
-        onAction = viewModel::onAction
+        onAction = { action ->
+            if(action is RegisterAction.OnLoginClick) {
+                onSignInClick()
+            }
+            viewModel.onAction(action)
+        }
     )
 }
 
@@ -101,7 +107,7 @@ fun RegisterScreen(
                 withStyle(
                     style = SpanStyle(
                         fontFamily = Poppins,
-                        color = RuniqueGray
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 ) {
                     append(stringResource(id = R.string.already_have_an_account) + " ")
