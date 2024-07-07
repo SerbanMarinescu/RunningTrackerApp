@@ -5,9 +5,7 @@ package com.example.run.domain
 import com.example.core.domain.Timer
 import com.example.core.domain.location.LocationTimeStamp
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,7 +30,9 @@ class RunningTracker(
     private val _runData = MutableStateFlow(RunData())
     val runData = _runData.asStateFlow()
 
-    private val isTrackingRun = MutableStateFlow(false)
+    private val _isTrackingRun = MutableStateFlow(false)
+    val isTrackingRun = _isTrackingRun.asStateFlow()
+
     private val isObservingLocation = MutableStateFlow(false)
 
     private val _elapsedTime = MutableStateFlow(Duration.ZERO)
@@ -51,7 +51,7 @@ class RunningTracker(
         )
 
     init {
-        isTrackingRun
+        _isTrackingRun
             .onEach { isTrackingRun ->
                 if(!isTrackingRun) {
                     val newList = buildList {
@@ -77,7 +77,7 @@ class RunningTracker(
 
         currentLocation
             .filterNotNull()
-            .combineTransform(isTrackingRun) { location, isTracking ->
+            .combineTransform(_isTrackingRun) { location, isTracking ->
                 if(isTracking) {
                     emit(location)
                 }
@@ -118,7 +118,7 @@ class RunningTracker(
     }
 
     fun setIsTrackingRun(isTracking: Boolean) {
-        this.isTrackingRun.value = isTracking
+        this._isTrackingRun.value = isTracking
     }
 
     fun startObservingLocation() {
