@@ -10,4 +10,6 @@ interface RunRepository {
     suspend fun upsertRun(run: Run, mapPicture: ByteArray): EmptyResult<DataError>
     suspend fun deleteRunById(id: RunId)
     suspend fun syncPendingRuns()
+    suspend fun logout(): EmptyResult<DataError.Network>
+    suspend fun deleteAllRuns()
 }
