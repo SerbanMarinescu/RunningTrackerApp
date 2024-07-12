@@ -14,4 +14,7 @@ dependencies {
     implementation(projects.core.database)
     implementation(projects.core.domain)
     implementation(projects.analytics.domain)
+
+    // Koin
+    implementation(libs.bundles.koin)
 }

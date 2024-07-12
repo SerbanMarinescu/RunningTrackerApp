@@ -2,6 +2,7 @@ package com.example.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.core.database.dao.AnalyticsDao
 import com.example.core.database.dao.RunDao
 import com.example.core.database.dao.RunPendingSyncDao
 import com.example.core.database.entity.DeletedRunSyncEntity
