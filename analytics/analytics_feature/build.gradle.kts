@@ -12,4 +12,7 @@ dependencies {
     implementation(projects.analytics.domain)
     implementation(projects.analytics.data)
     implementation(projects.core.database)
+
+    // Compose Navigation
+    implementation(libs.androidx.navigation.compose)
 }

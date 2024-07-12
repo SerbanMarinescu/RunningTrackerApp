@@ -21,4 +21,5 @@ abstract class RunDatabase: RoomDatabase() {
 
     abstract val runDao: RunDao
     abstract val runPendingSyncDao: RunPendingSyncDao
+    abstract val analyticsDao: AnalyticsDao
 }
