@@ -50,5 +50,9 @@ gradlePlugin {
             id = "runique.android.dynamic.feature"
             implementationClass = "AndroidDynamicFeatureConventionPlugin"
         }
+        register("androidApplicationWearCompose") {
+            id = "runique.android.application.wear.compose"
+            implementationClass = "AndroidApplicationWearComposeConventionPlugin"
+        }
     }
 }
