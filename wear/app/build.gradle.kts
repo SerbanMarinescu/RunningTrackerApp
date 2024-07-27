@@ -26,4 +26,6 @@ dependencies {
     implementation(projects.wear.run.presentation)
     implementation(projects.wear.run.data)
 
+    implementation(projects.core.connectivity.domain)
+    implementation(projects.core.connectivity.data)
 }
