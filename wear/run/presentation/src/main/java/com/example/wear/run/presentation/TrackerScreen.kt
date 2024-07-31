@@ -47,6 +47,8 @@ import com.example.core.presentation.ui.ObserveAsEvents
 import com.example.core.presentation.ui.formatted
 import com.example.core.presentation.ui.toFormattedHeartRate
 import com.example.core.presentation.ui.toFormattedKm
+import com.example.wear.run.presentation.ambient.AmbientObserver
+import com.example.wear.run.presentation.ambient.ambientMode
 import com.example.wear.run.presentation.components.RunDataCard
 import org.koin.androidx.compose.koinViewModel
 
@@ -126,12 +128,22 @@ fun TrackerScreen(
 
         permissionLauncher.launch(permissions.toTypedArray())
     }
+    
+    AmbientObserver(
+        onEnterAmbient = {
+            onAction(TrackerAction.OnEnterAmbientMode(it.burnInProtectionRequired))
+        },
+        onExitAmbient = {
+            onAction(TrackerAction.OnExitAmbientMode)
+        }
+    )
 
     if(state.isConnectedPhoneNearby) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
+                .background(MaterialTheme.colorScheme.background)
+                .ambientMode(state.isInAmbientMode, state.burnInProtectionRequired),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -216,7 +228,8 @@ fun TrackerScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
                 .padding(16.dp)
-                .verticalScroll(rememberScrollState()),
+                .verticalScroll(rememberScrollState())
+                .ambientMode(state.isInAmbientMode, state.burnInProtectionRequired),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
