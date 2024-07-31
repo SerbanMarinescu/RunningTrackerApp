@@ -1,6 +1,5 @@
 package com.example.runique
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraphBuilder
@@ -13,7 +12,7 @@ import com.example.auth.presentation.intro.IntroScreenRoot
 import com.example.auth.presentation.login.LoginScreenRoot
 import com.example.auth.presentation.register.RegisterScreenRoot
 import com.example.run.presentation.active_run.ActiveRunScreenRoot
-import com.example.run.presentation.active_run.service.ActiveRunService
+import com.example.core.notification.ActiveRunService
 import com.example.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
