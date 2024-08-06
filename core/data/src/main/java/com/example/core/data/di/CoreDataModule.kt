@@ -5,13 +5,14 @@ import com.example.core.data.networking.HttpClientFactory
 import com.example.core.data.run.OfflineFirstRunRepository
 import com.example.core.domain.SessionStorage
 import com.example.core.domain.run.RunRepository
+import io.ktor.client.engine.cio.CIO
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val coreDataModule = module {
     single {
-        HttpClientFactory(get()).build()
+        HttpClientFactory(get()).build(CIO.create())
     }
     singleOf(::EncryptedSessionStorage).bind<SessionStorage>()
 
