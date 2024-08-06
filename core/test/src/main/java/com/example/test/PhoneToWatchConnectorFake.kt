@@ -30,7 +30,7 @@ class PhoneToWatchConnectorFake: WatchConnector {
     private val _isTrackable = MutableStateFlow(true)
 
     override suspend fun sendActionToWatch(action: MessagingAction): EmptyResult<MessagingError> {
-        return if(sendError != null) {
+        return if(sendError == null) {
             Result.Success(Unit)
         } else {
             Result.Error(sendError!!)
